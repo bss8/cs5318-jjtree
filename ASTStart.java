@@ -10,5 +10,10 @@ class ASTStart extends SimpleNode {
         super(p, id);
     }
 
+    @Override
+    public String toString() {
+        return "";
+    }
+
 }
 /* JavaCC - OriginalChecksum=e18dfbd1759a8c4c928ac9b0e36d5fe8 (do not edit this line) */

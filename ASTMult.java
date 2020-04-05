@@ -10,5 +10,10 @@ class ASTMult extends SimpleNode {
         super(p, id);
     }
 
+    @Override
+    public String toString() {
+        return "*";
+    }
+
 }
 /* JavaCC - OriginalChecksum=23e5ea8eeb4084ecb355a7af88d75f7d (do not edit this line) */

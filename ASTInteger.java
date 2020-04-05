@@ -2,6 +2,8 @@
 /* JavaCCOptions:MULTI=true,NODE_USES_PARSER=false,VISITOR=false,TRACK_TOKENS=false,NODE_PREFIX=AST,NODE_EXTENDS=,NODE_FACTORY=,SUPPORT_CLASS_VISIBILITY_PUBLIC=true */
 public
 class ASTInteger extends SimpleNode {
+    private String val;
+
     public ASTInteger(int id) {
         super(id);
     }
@@ -10,9 +12,32 @@ class ASTInteger extends SimpleNode {
         super(p, id);
     }
 
-    public int getInt() {
-        return 0;
+    public void setName(String s) {
+        this.val = s;
     }
 
+    public int getInt() {
+        return Integer.parseInt(toString());
+    }
+
+    @Override
+    public String toString() {
+        return val;
+    }
+
+//    @Override
+//    public String printExpr(String s) {
+//        return toString();
+//    }
+
+    @Override
+    public void setInt(int num) {
+        this.val = Integer.toString(num);
+    }
+
+//    @Override
+//    public ASTInteger reduce() {
+//        return this;
+//    }
 }
 /* JavaCC - OriginalChecksum=ba6ca17f4260eb922b3a5b9c63bc3238 (do not edit this line) */

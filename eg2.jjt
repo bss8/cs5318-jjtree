@@ -21,7 +21,15 @@ class eg2 {
     eg2 t = new eg2(System.in);
     try {
       ASTStart n = t.Start();
+      System.out.println("The binary tree representation: ");
       n.dump("");
+      System.out.println("The expression from the binary tree: ");
+      System.out.println(n.printExpr(""));
+      System.out.println("The binary tree representation of the reduced expression: ");
+      n.reduce();
+      n.dump("");
+      System.out.println("The expression from the reduced binary tree");
+      System.out.println(n.printExpr(""));
       System.out.println("Thank you.");
     } catch (Exception e) {
       System.out.println("Oops.");
@@ -83,14 +91,14 @@ void Expression() #void : {}
 void AdditiveExpression() #void : {}
 {
   (
-    MultiplicativeExpression() ( ( "+" | "-" ) MultiplicativeExpression() )*
+    MultiplicativeExpression() ( ( "+" | "-" ) MultiplicativeExpression()#Add(2) )*
   ) #Add(>1)
 }
 
 void MultiplicativeExpression() #void : {}
 {
   (
-    UnaryExpression() ( ( "*" | "/" | "%" ) UnaryExpression() )*
+    UnaryExpression() ( ( "*" | "/" | "%" ) UnaryExpression()#Mult(2) )*
   ) #Mult(>1)
 }
 
@@ -110,7 +118,13 @@ void MyID() :
   }
 }
 
-void Integer() : {}
+void Integer() :
 {
-  <INTEGER_LITERAL>
+    Token t;
+}
+{
+    t=<INTEGER_LITERAL>
+    {
+        jjtThis.setName(t.image);
+    }
 }

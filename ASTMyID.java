@@ -17,7 +17,7 @@ class ASTMyID extends SimpleNode {
     }
 
     public String toString() {
-        return "Identifier: " + name;
+        return name;
     }
 
 }

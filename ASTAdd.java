@@ -10,6 +10,11 @@ class ASTAdd extends SimpleNode {
         super(p, id);
     }
 
+    @Override
+    public String toString() {
+        return "+";
+    }
+
 //  SimpleNode reduce() {
 //    SimpleNode leftSubExpr = jjtGetChild(0);
 //    SimpleNode rightSubExpr = jjtGetChild(1);
