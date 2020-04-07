@@ -15,22 +15,28 @@ class ASTAdd extends SimpleNode {
         return "+";
     }
 
-//  SimpleNode reduce() {
-//    SimpleNode leftSubExpr = jjtGetChild(0);
-//    SimpleNode rightSubExpr = jjtGetChild(1);
-//
-//    SimpleNode reducedLeftSubExpr = leftSubExpr.reduce(); // Recursively reduce the left sub expression
-//    SimpleNode reducedRightSubExpr = rightSubExpr.reduce(); // Recursively reduce the right sub expression
-//
-//    if ( reducedLeftSubExpr instanceof ASTInteger && reducedRightSubExpr instanceof ASTInteger ) { // case that can be reduced
-//      int sum = reducedLeftSubExpr.getInt() + reducedRightSubExpr.getInt();
-//      return new ASTInteger(sum);
-//    } else { // case that cannot be reduced
-//      jjtAddChild(reducedLeftSubExpr, 0);
-//      jjtAddChild(reducedRightSubExpr, 1);
-//      return this;
-//    }
-//  }
+    @Override
+    public SimpleNode reduce() {
+        SimpleNode leftSubExpr = (SimpleNode)jjtGetChild(0);
+        SimpleNode rightSubExpr = (SimpleNode)jjtGetChild(1);
+
+        SimpleNode reducedLeftSubExpr = leftSubExpr.reduce(); // Recursively reduce the left sub expression
+        SimpleNode reducedRightSubExpr = rightSubExpr.reduce(); // Recursively reduce the right sub expression
+
+        SimpleNode reducedExpr;
+        if ( reducedLeftSubExpr instanceof ASTInteger && reducedRightSubExpr instanceof ASTInteger ) { // case that can be reduced
+            int sum =( (ASTInteger)reducedLeftSubExpr).getInt() + ((ASTInteger)reducedRightSubExpr).getInt(); // Create a new ASTInteger node for the sum
+            reducedExpr = new ASTInteger(eg2TreeConstants.JJTINTEGER);
+            reducedExpr.setInt(sum);
+        } else { // case that cannot be reduced
+            reducedExpr = this;
+            jjtAddChild(reducedLeftSubExpr, 0);
+            jjtAddChild(reducedRightSubExpr, 1);
+        }
+
+        return reducedExpr;
+    }
+
 
 }
 /* JavaCC - OriginalChecksum=76da0ba34f500bf20909789c6322debb (do not edit this line) */

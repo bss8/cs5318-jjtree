@@ -15,5 +15,18 @@ class ASTStart extends SimpleNode {
         return "";
     }
 
+    public void printExpr() {
+//        System.out.print("(");
+
+        if (children != null) {
+            for (Node child : children) {
+                SimpleNode n = (SimpleNode) child;
+                if (n != null) {
+                    n.printExpr();
+                }
+            }
+        }
+    }
+
 }
 /* JavaCC - OriginalChecksum=e18dfbd1759a8c4c928ac9b0e36d5fe8 (do not edit this line) */

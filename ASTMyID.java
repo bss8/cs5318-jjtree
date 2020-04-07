@@ -20,5 +20,10 @@ class ASTMyID extends SimpleNode {
         return name;
     }
 
+    @Override
+    public void printExpr() {
+        System.out.print(toString());
+    }
+
 }
 /* JavaCC - OriginalChecksum=168a8284059212b37012ab7c53de3257 (do not edit this line) */

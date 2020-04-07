@@ -94,54 +94,23 @@ class SimpleNode implements Node {
         return id;
     }
 
-    public String printExpr(String s) {
-        StringBuilder exp = Optional.ofNullable(toString()).map(StringBuilder::new).orElse(null);
-        if (children != null){
-            exp = s == null ? null : new StringBuilder(s);
-            for (int i = 0; i < children.length; ++i) {
-                SimpleNode n = (SimpleNode)children[i];
-                if (n != null) {
-                    if(n.children == null){
-                        exp = (exp == null) ? new StringBuilder("null") : exp;
-                        exp.append(n.printExpr(""));
-                        exp.append(i == 0 ? toString() : ")");
-                    }
-                    else{
-                        exp = (exp == null) ? new StringBuilder("null") : exp;
-                        if (s != null) {
-                            exp.append(n.printExpr((s.equals("(") ? "" : "(")));
-                        }
-                        exp.append(i == 0 ? toString() : "");
-                    }
-                }
-            }
+    public void printExpr() {
+        SimpleNode leftSubExpr = (SimpleNode)jjtGetChild(0);
+        SimpleNode rightSubExpr = (SimpleNode)jjtGetChild(1);
 
-        }
-        return exp == null ? null : exp.toString();
+        System.out.print("(");
+        leftSubExpr.printExpr();
+        System.out.print(toString());
+        rightSubExpr.printExpr();
+        System.out.print(")");
+
     }
 
     public void setInt(int sum) {}
 
-//    SimpleNode reduce() {
-//        SimpleNode leftSubExpr = (SimpleNode)jjtGetChild(0);
-//        SimpleNode rightSubExpr = (SimpleNode)jjtGetChild(1);
-//
-//        SimpleNode reducedLeftSubExpr = leftSubExpr.reduce(); // Recursively reduce the left sub expression
-//        SimpleNode reducedRightSubExpr = rightSubExpr.reduce(); // Recursively reduce the right sub expression
-//
-//        SimpleNode reducedExpr = null;
-//        if ( reducedLeftSubExpr instanceof ASTInteger && reducedRightSubExpr instanceof ASTInteger ) { // case that can be reduced
-//            int sum =( (ASTInteger)reducedLeftSubExpr).getInt() + ((ASTInteger)reducedRightSubExpr).getInt(); // Create a new ASTInteger node for the sum
-//            reducedExpr = new ASTInteger(eg2TreeConstants.JJTINTEGER);
-//            ((ASTInteger)reducedExpr).setInt(sum);
-//        } else { // case that cannot be reduced
-//            reducedExpr = this;
-//            jjtAddChild(reducedLeftSubExpr, 0);
-//            jjtAddChild(reducedRightSubExpr, 1);
-//        }
-//
-//        return reducedExpr;
-//    }
+    SimpleNode reduce() {
+        return this;
+    }
 }
 
 

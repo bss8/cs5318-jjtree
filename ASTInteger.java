@@ -25,19 +25,20 @@ class ASTInteger extends SimpleNode {
         return val;
     }
 
-//    @Override
-//    public String printExpr(String s) {
-//        return toString();
-//    }
 
     @Override
     public void setInt(int num) {
         this.val = Integer.toString(num);
     }
 
-//    @Override
-//    public ASTInteger reduce() {
-//        return this;
-//    }
+    @Override
+    public void printExpr() {
+        System.out.print(toString());
+    }
+
+    @Override
+    public SimpleNode reduce() {
+        return (SimpleNode) this;
+    }
 }
 /* JavaCC - OriginalChecksum=ba6ca17f4260eb922b3a5b9c63bc3238 (do not edit this line) */

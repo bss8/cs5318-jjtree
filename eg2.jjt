@@ -20,17 +20,19 @@ class eg2 {
     System.out.println("Reading from standard input...");
     eg2 t = new eg2(System.in);
     try {
-      ASTStart n = t.Start();
-      System.out.println("The binary tree representation: ");
-      n.dump("");
-      System.out.println("The expression from the binary tree: ");
-      System.out.println(n.printExpr(""));
-      System.out.println("The binary tree representation of the reduced expression: ");
-      n.reduce();
-      n.dump("");
-      System.out.println("The expression from the reduced binary tree");
-      System.out.println(n.printExpr(""));
-      System.out.println("Thank you.");
+      SimpleNode n = t.Start();
+      SimpleNode m = (SimpleNode) n.jjtGetChild(0);
+      System.out.println("\nThe binary tree representation: ");
+      m.dump("");
+      System.out.println("\nThe expression from the binary tree: ");
+      m.printExpr();
+      System.out.println("\nThe binary tree representation of the reduced expression: ");
+      m = m.reduce();
+      m.dump("");
+      System.out.println("\nThe expression from the reduced binary tree");
+      m.printExpr();
+      //Commenting out this statement to match assignment example output
+      //System.out.println("Thank you.");
     } catch (Exception e) {
       System.out.println("Oops.");
       System.out.println(e.getMessage());
