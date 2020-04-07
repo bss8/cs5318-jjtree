@@ -15,17 +15,14 @@ class ASTStart extends SimpleNode {
         return "";
     }
 
+    @Override
     public void printExpr() {
-//        System.out.print("(");
+        ((SimpleNode)children[0]).printExpr();
+    }
 
-        if (children != null) {
-            for (Node child : children) {
-                SimpleNode n = (SimpleNode) child;
-                if (n != null) {
-                    n.printExpr();
-                }
-            }
-        }
+    @Override
+    public SimpleNode reduce() {
+        return ((SimpleNode)children[0]).reduce();
     }
 
 }

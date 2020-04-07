@@ -16,21 +16,24 @@ options {
 PARSER_BEGIN(eg2)
 
 class eg2 {
+  /**
+  * Added call statements to dump and reduce as needed.
+  * Also kept ASTStart and implemented the methods there as needed.
+  */
   public static void main(String args[]) {
     System.out.println("Reading from standard input...");
     eg2 t = new eg2(System.in);
     try {
-      SimpleNode n = t.Start();
-      SimpleNode m = (SimpleNode) n.jjtGetChild(0);
+      ASTStart n = t.Start();
       System.out.println("\nThe binary tree representation: ");
-      m.dump("");
+      n.dump("");
       System.out.println("\nThe expression from the binary tree: ");
-      m.printExpr();
+      n.printExpr();
       System.out.println("\nThe binary tree representation of the reduced expression: ");
-      m = m.reduce();
-      m.dump("");
+      n.reduce();
+      n.dump("");
       System.out.println("\nThe expression from the reduced binary tree");
-      m.printExpr();
+      n.printExpr();
       //Commenting out this statement to match assignment example output
       //System.out.println("Thank you.");
     } catch (Exception e) {
@@ -90,6 +93,9 @@ void Expression() #void : {}
   AdditiveExpression()
 }
 
+/**
+* Updated with #Add(2) to make it a binary tree
+*/
 void AdditiveExpression() #void : {}
 {
   (
@@ -97,6 +103,9 @@ void AdditiveExpression() #void : {}
   ) #Add(>1)
 }
 
+/**
+* Updated with #Mult(2) to make it a binary tree
+*/
 void MultiplicativeExpression() #void : {}
 {
   (
@@ -120,6 +129,9 @@ void MyID() :
   }
 }
 
+/**
+* Updated to accept the integer literal
+*/
 void Integer() :
 {
     Token t;
