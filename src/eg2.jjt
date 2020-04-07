@@ -25,16 +25,18 @@ class eg2 {
     System.out.println("Reading from standard input...");
     eg2 t = new eg2(System.in);
     try {
-      ASTStart n = t.Start();
+      //ASTStart n = t.Start();
+      SimpleNode n = t.Start();
+      SimpleNode m = (SimpleNode) n.jjtGetChild(0);
       System.out.println("\nThe binary tree representation: ");
-      n.dump("");
+      m.dump("");
       System.out.println("\nThe expression from the binary tree: ");
-      n.printExpr();
+      m = m.printExpr();
       System.out.println("\nThe binary tree representation of the reduced expression: ");
-      n.reduce();
-      n.dump("");
+      m.reduce();
+      m.dump("");
       System.out.println("\nThe expression from the reduced binary tree");
-      n.printExpr();
+      m.printExpr();
       //Commenting out this statement to match assignment example output
       //System.out.println("Thank you.");
     } catch (Exception e) {
@@ -100,7 +102,7 @@ void Expression() #void : {}
 void AdditiveExpression() #void : {}
 {
   (
-    MultiplicativeExpression() ( ( "+" | "-" ) MultiplicativeExpression()#Add(2) )*
+    MultiplicativeExpression() ( ( "+" MultiplicativeExpression()#Add(2) | "-" MultiplicativeExpression()#Sub(2))  )*
   ) #Add(>1)
 }
 
@@ -110,7 +112,7 @@ void AdditiveExpression() #void : {}
 void MultiplicativeExpression() #void : {}
 {
   (
-    UnaryExpression() ( ( "*" | "/" | "%" ) UnaryExpression()#Mult(2) )*
+    UnaryExpression() ( ( "*" UnaryExpression()#Mult(2) | "/" UnaryExpression()#Div(2) | "%" UnaryExpression()#Mod(2))  )*
   ) #Mult(>1)
 }
 
