@@ -16,18 +16,17 @@ class ASTMult extends SimpleNode {
     }
 
 
-
     @Override
     public SimpleNode reduce() {
-        SimpleNode leftSubExpr = (SimpleNode)jjtGetChild(0);
-        SimpleNode rightSubExpr = (SimpleNode)jjtGetChild(1);
+        SimpleNode leftSubExpr = (SimpleNode) jjtGetChild(0);
+        SimpleNode rightSubExpr = (SimpleNode) jjtGetChild(1);
 
         SimpleNode reducedLeftSubExpr = leftSubExpr.reduce(); // Recursively reduce the left sub expression
         SimpleNode reducedRightSubExpr = rightSubExpr.reduce(); // Recursively reduce the right sub expression
 
         SimpleNode reducedExpr;
-        if ( reducedLeftSubExpr instanceof ASTInteger && reducedRightSubExpr instanceof ASTInteger ) { // case that can be reduced
-            int sum =( (ASTInteger)reducedLeftSubExpr).getInt() * ((ASTInteger)reducedRightSubExpr).getInt(); // Create a new ASTInteger node for the sum
+        if (reducedLeftSubExpr instanceof ASTInteger && reducedRightSubExpr instanceof ASTInteger) { // case that can be reduced
+            int sum = ((ASTInteger) reducedLeftSubExpr).getInt() * ((ASTInteger) reducedRightSubExpr).getInt(); // Create a new ASTInteger node for the sum
             reducedExpr = new ASTInteger(eg2TreeConstants.JJTINTEGER);
             reducedExpr.setInt(sum);
         } else { // case that cannot be reduced

@@ -16,6 +16,7 @@ options {
 PARSER_BEGIN(eg2)
 
 class eg2 {
+
   /**
   * Added call statements to dump and reduce as needed.
   * Also kept ASTStart and implemented the methods there as needed.

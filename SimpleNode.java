@@ -95,8 +95,8 @@ class SimpleNode implements Node {
     }
 
     public void printExpr() {
-        SimpleNode leftSubExpr = (SimpleNode)jjtGetChild(0);
-        SimpleNode rightSubExpr = (SimpleNode)jjtGetChild(1);
+        SimpleNode leftSubExpr = (SimpleNode) jjtGetChild(0);
+        SimpleNode rightSubExpr = (SimpleNode) jjtGetChild(1);
 
         System.out.print("(");
         leftSubExpr.printExpr();
@@ -106,7 +106,8 @@ class SimpleNode implements Node {
 
     }
 
-    public void setInt(int sum) {}
+    public void setInt(int sum) {
+    }
 
     SimpleNode reduce() {
         return this;

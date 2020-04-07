@@ -20,6 +20,7 @@ class eg2/*@bgen(jjtree)*/implements eg2TreeConstants/*@egen*/ {/*@bgen(jjtree)*
   protected static JJTeg2State jjtree = new JJTeg2State();
 
 /*@egen*/
+
   /**
   * Added call statements to dump and reduce as needed.
   * Also kept ASTStart and implemented the methods there as needed.

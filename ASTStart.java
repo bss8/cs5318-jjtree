@@ -17,12 +17,12 @@ class ASTStart extends SimpleNode {
 
     @Override
     public void printExpr() {
-        ((SimpleNode)children[0]).printExpr();
+        ((SimpleNode) children[0]).printExpr();
     }
 
     @Override
     public SimpleNode reduce() {
-        return ((SimpleNode)children[0]).reduce();
+        return ((SimpleNode) children[0]).reduce();
     }
 
 }
